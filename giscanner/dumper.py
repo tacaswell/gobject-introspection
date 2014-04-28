@@ -21,6 +21,7 @@
 
 from __future__ import absolute_import
 from __future__ import division
+from __future__ import print_function
 
 import os
 import sys
@@ -239,8 +240,8 @@ class DumpCompiler(object):
                     "Could not find c source file: %s" % (source, ))
         args.extend(list(sources))
         if not self._options.quiet:
-            print "g-ir-scanner: compile: %s" % (
-                subprocess.list2cmdline(args), )
+            print("g-ir-scanner: compile: %s" % (
+                subprocess.list2cmdline(args), ))
             sys.stdout.flush()
         try:
             subprocess.check_call(args)
@@ -296,8 +297,8 @@ class DumpCompiler(object):
             self._add_link_external_args(args)
 
         if not self._options.quiet:
-            print "g-ir-scanner: link: %s" % (
-                subprocess.list2cmdline(args), )
+            print("g-ir-scanner: link: %s" % (
+                subprocess.list2cmdline(args), ))
             sys.stdout.flush()
         msys = os.environ.get('MSYSTEM', None)
         if msys:
