@@ -21,6 +21,7 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+from __future__ import unicode_literals
 
 import re
 import os
@@ -173,7 +174,7 @@ def files_are_identical(path1, path2):
     f2 = open(path2, 'rb')
     buf1 = f1.read(8192)
     buf2 = f2.read(8192)
-    while buf1 == buf2 and buf1 != '':
+    while buf1 == buf2 and buf1 != b'':
         buf1 = f1.read(8192)
         buf2 = f2.read(8192)
     f1.close()
