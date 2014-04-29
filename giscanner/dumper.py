@@ -204,7 +204,8 @@ class DumpCompiler(object):
         proc = subprocess.Popen(
             cmd + self._packages,
             stdout=subprocess.PIPE)
-        return proc.communicate()[0].split()
+        out, err = proc.communicate()
+        return out.decode('ascii').split()
 
     def _compile(self, output, *sources):
         # Not strictly speaking correct, but easier than parsing shell

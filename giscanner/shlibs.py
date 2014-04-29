@@ -154,6 +154,7 @@ def _resolve_non_libtool(options, binary, libraries):
                         proc = subprocess.Popen(args + [implib],
                                                 stdout=subprocess.PIPE)
                         o, e = proc.communicate()
+                        o = o.decode('ascii')
                         for line in o.splitlines():
                             if is_msvc:
                                 # On Visual Studio, dumpbin -symbols something.lib gives the
@@ -199,6 +200,7 @@ def _resolve_non_libtool(options, binary, libraries):
 
         shlibs = []
         for line in proc.stdout:
+            line = line.decode('ascii')
             for library, pattern in patterns.items():
                 m = pattern.search(line)
                 if m:
