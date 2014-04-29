@@ -303,14 +303,17 @@ class SourceScanner(object):
                                 stdin=subprocess.PIPE,
                                 stdout=subprocess.PIPE)
 
+        def encoded_write(s):
+            proc.stdin.write(s.encode('ascii'))
+
         for define in defines:
-            proc.stdin.write('#ifndef %s\n' % (define, ))
-            proc.stdin.write('# define %s\n' % (define, ))
-            proc.stdin.write('#endif\n')
+            encoded_write('#ifndef %s\n' % (define, ))
+            encoded_write('# define %s\n' % (define, ))
+            encoded_write('#endif\n')
         for undef in undefs:
-            proc.stdin.write('#undef %s\n' % (undef, ))
+            encoded_write('#undef %s\n' % (undef, ))
         for filename in filenames:
-            proc.stdin.write('#include <%s>\n' % (filename, ))
+            encoded_write('#include <%s>\n' % (filename, ))
         proc.stdin.close()
 
         tmp_fd, tmp_name = tempfile.mkstemp()
