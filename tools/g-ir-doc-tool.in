@@ -26,9 +26,13 @@ from __future__ import unicode_literals
 
 import os
 import sys
-import __builtin__
 
-__builtin__.__dict__['DATADIR'] = "@datarootdir@"
+if sys.version_info.major < 3:
+    import __builtin__ as builtins
+else:
+    import builtins
+
+builtins.__dict__['DATADIR'] = "@datarootdir@"
 
 if 'GI_SCANNER_DEBUG' in os.environ:
     def on_exception(exctype, value, tb):
