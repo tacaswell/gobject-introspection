@@ -535,7 +535,7 @@ class GtkDocAnnotatable(object):
         self.annotations = GtkDocAnnotations()
 
     def __repr__(self):
-        return '<GtkDocAnnotatable %r %r>' % (self.annotations, )
+        return "<GtkDocAnnotatable '%s' %r>" % (self.annotations, )
 
     def validate(self):
         '''
@@ -947,7 +947,7 @@ class GtkDocParameter(GtkDocAnnotatable):
         self.description = None
 
     def __repr__(self):
-        return '<GtkDocParameter %r %r>' % (self.name, self.annotations)
+        return "<GtkDocParameter '%s' %r>" % (self.name, self.annotations)
 
 
 class GtkDocTag(GtkDocAnnotatable):
@@ -973,7 +973,7 @@ class GtkDocTag(GtkDocAnnotatable):
         self.description = None
 
     def __repr__(self):
-        return '<GtkDocTag %r %r>' % (self.name, self.annotations)
+        return "<GtkDocTag '%s' %r>" % (self.name, self.annotations)
 
 
 class GtkDocCommentBlock(GtkDocAnnotatable):
@@ -1023,7 +1023,7 @@ class GtkDocCommentBlock(GtkDocAnnotatable):
         return cmp(self.name, other.name)
 
     def __repr__(self):
-        return '<GtkDocCommentBlock %r %r>' % (self.name, self.annotations)
+        return "<GtkDocCommentBlock '%s' %r>" % (self.name, self.annotations)
 
     def validate(self):
         '''

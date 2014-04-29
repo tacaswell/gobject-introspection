@@ -238,7 +238,7 @@ def test_codegen(optstring):
         gen = EverythingCodeGenerator(out_h_filename, out_c_filename)
         gen.write()
     else:
-        _error("Invaild namespace %r" % (namespace, ))
+        _error("Invaild namespace '%s'" % (namespace, ))
     return 0
 
 
@@ -346,11 +346,11 @@ def create_transformer(namespace, options):
 
     for include in options.includes:
         if os.sep in include:
-            _error("Invalid include path %r" % (include, ))
+            _error("Invalid include path '%s'" % (include, ))
         try:
             include_obj = Include.from_string(include)
         except:
-            _error("Malformed include %r\n" % (include, ))
+            _error("Malformed include '%s'\n" % (include, ))
         transformer.register_include(include_obj)
     for include_path in options.includes_uninstalled:
         transformer.register_include_uninstalled(include_path)
@@ -417,7 +417,7 @@ def write_output(data, options):
         passthrough_gir(main_f_name, temp_f)
         temp_f.close()
         if not utils.files_are_identical(main_f_name, temp_f_name):
-            _error("Failed to re-parse gir file; scanned=%r passthrough=%r" % (
+            _error("Failed to re-parse gir file; scanned='%s' passthrough='%s'" % (
                 main_f_name, temp_f_name))
         os.unlink(temp_f_name)
         try:
